@@ -16,20 +16,24 @@ class GardenManager:
         self.water = water_level
         self.sunlight = sunlight
         self.plants = plant_list
-        
+
     def check_health(self):
         try:
             for plant in self.plants:
                 if not plant:
                     raise PlantError("Plant name cannot be empty!")
                 elif self.water > 10:
-                    raise GardenError(f"Water level {self.water} is too high (max 10)")
+                    error = f"Water level {self.water} is too high (max 10)"
+                    raise GardenError(error)
                 elif self.water < 1:
-                    raise GardenError(f"Water level {self.water} is too low (min 1)")
+                    error = f"Water level {self.water} is too low (min 1)"
+                    raise GardenError(error)
                 elif self.sunlight > 12:
-                    raise GardenError(f"{self.sunlight} hours is too high (max 12)")
+                    error = f"{self.sunlight} hours is too high (max 12)"
+                    raise GardenError(error)
                 elif self.sunlight < 2:
-                    raise GardenError(f"{self.sunlight} hours is too low (min 2)")
+                    error = f"{self.sunlight} hours is too low (min 2)"
+                    raise GardenError(error)
                 else:
                     print(f"Plant {plant} is Healthy!")
         except (PlantError, WaterError, GardenError) as e:
