@@ -1,24 +1,24 @@
-def garden_operations(x, y):
+def garden_operations(x: any, y: int) -> None:
     if y == 1:
         try:
             open(x, "r")
-        except FileNotFoundError:
-            print("Caught FileNotFoundError: No such file 'test.txt'")
+        except FileNotFoundError as e:
+            print(f"Caught FileNotFoundError: {e}")
     elif y == 2:
         try:
             print(int(x))
-        except ValueError:
-            print("Caught ValueError: invalid literal for int()")
+        except ValueError as e:
+            print(f"Caught ValueError: {e}")
     elif y == 3:
         try:
             x /= 0
-        except ZeroDivisionError:
-            print("Caught ZeroDivisionError: division by zero")
+        except ZeroDivisionError as e:
+            print(f"Caught ZeroDivisionError: {e}")
     elif y == 4:
         try:
             x['ahmed']
-        except KeyError:
-            print("Caught KeyError: 'ahmed'")
+        except KeyError as e:
+            print(f"Caught KeyError: {e}")
     else:
         try:
             x = 'abc'
@@ -28,7 +28,7 @@ def garden_operations(x, y):
             print("Caught an error, the program continues..")
 
 
-def test_error_types():
+def test_error_types() -> None:
     print("=== Garden Error Types Demo ===")
     print()
     print("Testing FileNotFoundError..")
