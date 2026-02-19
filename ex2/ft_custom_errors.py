@@ -10,32 +10,38 @@ class WaterError(GardenError):
     pass
 
 
-def check_status(wilting, water_level):
+def check_status(wilting: bool, water_level: int) -> None:
     if wilting and not water_level:
-        raise GardenError("General garden failure")
+        raise GardenError("The tomato plant is wilting!")
     elif water_level == 0:
         raise WaterError("Not enough water in the tank!")
     elif wilting:
-        raise PlantError("The plant is wilting")
+        raise PlantError("The tomato plant is wilting!")
 
 
 if __name__ == "__main__":
-    print("=== Abdnahal's custom errors ===")
-    print()
-    print("Testing WaterError")
-    try:
-        check_status(False, 0)
-    except WaterError as e:
-        print(f"Caught a WaterError: {e}\n")
-    print("Testing PlantError")
+    print("=== Custom Garden Errors Demo ===\n")
+    print("Testing PlantError...")
     try:
         check_status(True, 5)
     except PlantError as e:
-        print(f"Caught a PlantError: {e}\n")
-    print("Testing GardenErrror")
+        print(f"Caught PlantError: {e}\n")
+
+    print("Testing WaterError...")
     try:
-        check_status(True, 0)
+        check_status(False, 0)
+    except WaterError as e:
+        print(f"Caught WaterError: {e}\n")
+
+    print("Testing catching all garden errors...")
+    try:
+        check_status(True, 5)
     except GardenError as e:
-        print(f"Caught a GardenError: {e}\n")
-    print()
+        print(f"Caught a garden error: {e}")
+
+    try:
+        check_status(False, 0)
+    except GardenError as e:
+        print(f"Caught a garden error: {e}\n")
+
     print("All custom error types work correctly!")
