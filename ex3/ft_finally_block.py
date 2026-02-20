@@ -11,7 +11,7 @@ def water_plants(plant_list: list) -> None:
         print("Closing watering system (cleanup)")
 
 
-def test_watering_system():
+def test_watering_system() -> None:
     print("=== Garden Watering System ===\n\n")
     print("Testing normal watering...")
     water_plants(['tomato', 'orange', 'avocado'])
